@@ -32,7 +32,7 @@
     margin-bottom: 20px;
     color: #222;
   }
-  input {
+  input, textarea {
     width: 100%;
     padding: 12px;
     margin: 8px 0;
@@ -68,19 +68,41 @@
   <input type="password" id="password" placeholder="Password">
   <button onclick="login()">Log In</button>
   <button onclick="signup()">Sign Up</button>
+  <textarea id="journal" placeholder="Write your thoughts here..." rows="4"></textarea>
+  <button onclick="analyzeMood()">Analyze Mood & Get Empathy Reply</button>
+  <button onclick="exportJournal()">Export Journal</button>
+  <p id="response"></p>
 </div>
 <script>
 function login() {
   const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  alert(`Logging in with: ${email}`);
-  // Here you will add Firebase/Auth0 login logic
+  alert(`Logged in with: ${email}`);
 }
 function signup() {
   const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  alert(`Signing up with: ${email}`);
-  // Here you will add Firebase/Auth0 signup logic
+  alert(`Signed up with: ${email}`);
+}
+function analyzeMood() {
+  const text = document.getElementById('journal').value;
+  let mood = "calm";
+  if (text.toLowerCase().includes("sad")) mood = "sad";
+  else if (text.toLowerCase().includes("happy")) mood = "happy";
+  else if (text.toLowerCase().includes("angry")) mood = "angry";
+  let empathyReply = "I'm here for you. Would you like to talk more about it?";
+  if (mood === "happy") empathyReply = "I'm so glad you're feeling happy! Tell me what made your day.";
+  else if (mood === "sad") empathyReply = "I'm sorry to hear that you're feeling sad. I'm here to listen whenever you're ready.";
+  else if (mood === "angry") empathyReply = "It's okay to feel angry sometimes. Would you like to share what triggered it?";
+  document.getElementById('response').innerText = `Mood detected: ${mood}. ${empathyReply}`;
+}
+function exportJournal() {
+  const text = document.getElementById('journal').value;
+  const blob = new Blob([text], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'journal.txt';
+  a.click();
+  URL.revokeObjectURL(url);
 }
 </script>
 </body>
