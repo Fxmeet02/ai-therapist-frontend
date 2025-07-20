@@ -32,6 +32,11 @@
     color: #333;
     margin-bottom: 20px;
   }
+  #mood {
+    font-size: 18px;
+    color: #555;
+    margin: 15px 0;
+  }
   button {
     background: #0ed2f7;
     border: none;
@@ -41,6 +46,7 @@
     border-radius: 12px;
     cursor: pointer;
     transition: background 0.3s ease;
+    margin-top: 10px;
   }
   button:hover {
     background: #0bb3cf;
@@ -54,11 +60,41 @@
 <body>
 <div class="calm-container">
   <h1>How are you feeling today?</h1>
-  <button onclick="startSession()">Start Session</button>
+  <p id="mood">Tap below to record your feelings</p>
+  <button onclick="startVoiceSession()">🎤 Start Voice Journaling</button>
 </div>
 <script>
-function startSession() {
-  alert('Session starting soon... Voice journaling, empathy visuals, and mood tracking coming in the next push.');
+let recognition;
+if ('webkitSpeechRecognition' in window) {
+  recognition = new webkitSpeechRecognition();
+  recognition.lang = 'en-US';
+  recognition.continuous = false;
+  recognition.interimResults = false;
+
+  recognition.onresult = function(event) {
+    const transcript = event.results[0][0].transcript;
+    document.getElementById('mood').innerText = `You said: "${transcript}"`;
+    if (transcript.toLowerCase().includes('happy')) {
+      document.body.style.background = 'linear-gradient(135deg, #fddb92, #d1fdff)';
+    } else if (transcript.toLowerCase().includes('sad')) {
+      document.body.style.background = 'linear-gradient(135deg, #89f7fe, #66a6ff)';
+    } else if (transcript.toLowerCase().includes('angry')) {
+      document.body.style.background = 'linear-gradient(135deg, #f77062, #fe5196)';
+    } else {
+      document.body.style.background = 'linear-gradient(135deg, #b2fefa, #0ed2f7)';
+    }
+  };
+
+  recognition.onerror = function(event) {
+    document.getElementById('mood').innerText = 'Error capturing voice. Please try again.';
+  };
+} else {
+  document.getElementById('mood').innerText = 'Voice recognition not supported in this browser.';
+}
+
+function startVoiceSession() {
+  document.getElementById('mood').innerText = 'Listening... Speak now.';
+  recognition.start();
 }
 </script>
 </body>
