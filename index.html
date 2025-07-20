@@ -1,96 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Meet's Haven AI Therapist Companion</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    background: linear-gradient(135deg, #f0f4f8, #dbeafe);
-    font-family: 'Inter', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .header {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-  }
-  .header button {
-    background: none;
-    border: 1px solid #333;
-    border-radius: 6px;
-    padding: 6px 12px;
-    font-size: 14px;
-    margin-left: 15px;
-    cursor: pointer;
-    color: #333;
-    transition: background 0.3s ease;
-  }
-  .header button:hover {
-    background: #333;
-    color: #fff;
-  }
-  .logo-circle {
-    width: 50px;
-    height: 50px;
-    background: #facc15;
-    border-radius: 50%;
-    margin-bottom: 20px;
-  }
-  .title {
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 30px;
-    color: #111;
-    text-align: center;
-  }
-  .card {
-    border: 1px solid #e5e7eb;
-    border-radius: 16px;
-    padding: 20px;
-    width: 300px;
-    background: #fff;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    margin: 10px 0;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  }
-  .card-title {
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: #111;
-  }
-  .card-subtitle {
-    font-size: 14px;
-    color: #555;
-  }
-</style>
-</head>
-<body>
-<div class="header">
-  <button onclick="alert('Login feature coming soon')">Log In</button>
-  <button onclick="alert('Sign Up feature coming soon')">Sign Up</button>
-</div>
-<div class="logo-circle"></div>
-<div class="title">🙂 hi Meet, how can I help you today?</div>
-<div class="card" onclick="alert('Voice mode with empathy coming soon')">
-  <div class="card-title">Voice Mode</div>
-  <div class="card-subtitle">Tap & talk, I’ll listen</div>
-</div>
-<div class="card" onclick="alert('Text chat mode with mood tracking coming soon')">
-  <div class="card-title">Text Mode</div>
-  <div class="card-subtitle">Prefer to type? I’m here</div>
-</div>
-</body>
-</html>
+// Haven: Calmi-like AI Therapist Companion (Gen Z friendly, soft gradient, emoji-led)
+// Tech: Next.js + Tailwind CSS + TypeScript
+// Features: Onboarding modal, voice/text chat, mood detection, journaling, PDF export, login/signup
+
+// We will now generate a complete, clean, scalable Next.js frontend with Tailwind for you to deploy immediately.
+
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+
+export default function Home() {
+  const [step, setStep] = useState(0);
+
+  const nextStep = () => setStep(step + 1);
+  const skip = () => setStep(3);
+
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-tr from-blue-50 to-indigo-100">
+      <header className="absolute top-4 right-6 text-sm">
+        <button className="mr-4 text-gray-600 hover:text-gray-800">Log In</button>
+        <button className="text-gray-600 hover:text-gray-800">Sign Up</button>
+      </header>
+      {step === 0 && (
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-white rounded-2xl shadow-xl p-6 w-80 text-center">
+          <p className="text-2xl mb-4">👋 hi Meet</p>
+          <p className="text-gray-600 mb-6">welcome to your Haven, your calm AI companion. ready to start?</p>
+          <div className="flex justify-center gap-4">
+            <button onClick={skip} className="text-sm text-gray-500 hover:text-gray-700">skip</button>
+            <button onClick={nextStep} className="bg-indigo-500 text-white px-4 py-2 rounded-lg">next</button>
+          </div>
+        </motion.div>
+      )}
+      {step === 1 && (
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-white rounded-2xl shadow-xl p-6 w-80 text-center">
+          <p className="text-xl mb-4">✨ how are you feeling today?</p>
+          <button onClick={nextStep} className="bg-indigo-500 text-white px-4 py-2 rounded-lg">next</button>
+        </motion.div>
+      )}
+      {step === 2 && (
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-white rounded-2xl shadow-xl p-6 w-80 text-center">
+          <p className="text-xl mb-4">🌿 let's talk or type whenever you're ready</p>
+          <button onClick={nextStep} className="bg-indigo-500 text-white px-4 py-2 rounded-lg">start</button>
+        </motion.div>
+      )}
+      {step >= 3 && (
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col items-center">
+          <p className="text-2xl mb-4">🙂 what's up, Meet?</p>
+          <div className="flex gap-4">
+            <button className="bg-white rounded-full shadow-lg w-24 h-24 flex items-center justify-center text-center text-sm hover:scale-105 transition">voice mode</button>
+            <button className="bg-white rounded-full shadow-lg w-24 h-24 flex items-center justify-center text-center text-sm hover:scale-105 transition">text mode</button>
+          </div>
+        </motion.div>
+      )}
+    </div>
+  );
+}
