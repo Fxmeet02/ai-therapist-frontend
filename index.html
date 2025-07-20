@@ -3,83 +3,89 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Welcome Friend | Meet's AI Therapist Companion</title>
+<title>Meet's Haven AI Therapist Companion</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
   body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #111;
-    color: white;
+    background: linear-gradient(135deg, #f8fafc, #e0f2fe);
     font-family: 'Inter', sans-serif;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
-  .onboarding {
-    background: #fff;
-    color: #111;
-    border-radius: 12px;
-    padding: 30px;
-    max-width: 350px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    animation: fadeIn 0.8s ease;
-  }
-  .onboarding p {
-    margin: 10px 0;
-    line-height: 1.5;
-  }
-  .onboarding button {
-    background: #facc15;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    margin: 10px;
-    transition: background 0.3s ease;
-  }
-  .onboarding button:hover {
-    background: #eab308;
-  }
-  .top-right {
+  .header {
     position: absolute;
     top: 20px;
     right: 20px;
   }
-  .top-right button {
-    background: #3b82f6;
-    color: white;
+  .header button {
+    background: #111;
+    color: #fff;
     border: none;
-    padding: 8px 14px;
-    margin: 0 5px;
-    border-radius: 6px;
+    padding: 8px 16px;
+    margin-left: 10px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
+    transition: background 0.3s ease;
   }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+  .header button:hover {
+    background: #333;
+  }
+  .card {
+    background: #ffffff;
+    padding: 40px;
+    max-width: 400px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    animation: fadeInUp 0.8s ease;
+  }
+  .card h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  .card p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .card button {
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .card button:hover {
+    background: #2563eb;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
 </style>
 </head>
 <body>
-<div class="top-right">
-  <button onclick="alert('Login functionality coming soon')">Log In</button>
-  <button onclick="alert('Sign Up functionality coming soon')">Sign Up</button>
+<div class="header">
+  <button onclick="alert('Login coming soon')">Log In</button>
+  <button onclick="alert('Sign Up coming soon')">Sign Up</button>
 </div>
-<div class="onboarding">
-  <p style="font-size: 24px;">:)</p>
-  <p>hi friend</p>
-  <p>we created this companion because life can be... a lot.<br>sometimes you just need someone to talk to.</p>
-  <p>whether you're navigating a rough day, figuring things out,<br>or just need a moment to breathe</p>
-  <p style="font-weight: 600;">we're here for you</p>
-  <p>wanna give it a try?<br>start with this <strong>quick guide</strong></p>
-  <p>love,<br><strong>Meet</strong></p>
-  <button onclick="alert('Guide coming soon!')">next</button>
-  <button onclick="alert('You can always return to start')">skip</button>
+<div class="card">
+  <h1>✨ hi friend</h1>
+  <p>We created Haven because life can feel like a lot. Sometimes you just need someone to listen without judgment.</p>
+  <p>Whether you're navigating a rough day, figuring things out, or simply needing a moment to breathe,</p>
+  <p style="font-weight: 600;">We're here for you.</p>
+  <p>Ready to start your journey with your AI companion?</p>
+  <button onclick="alert('Launching your calming journey...')">Start Now</button>
 </div>
 </body>
 </html>
