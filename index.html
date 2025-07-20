@@ -10,7 +10,7 @@
     margin: 0;
     padding: 0;
     height: 100vh;
-    background: #fff;
+    background: linear-gradient(135deg, #f0f4f8, #dbeafe);
     font-family: 'Inter', sans-serif;
     display: flex;
     flex-direction: column;
@@ -24,41 +24,47 @@
   }
   .header button {
     background: none;
-    border: none;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 6px 12px;
     font-size: 14px;
     margin-left: 15px;
     cursor: pointer;
     color: #333;
+    transition: background 0.3s ease;
+  }
+  .header button:hover {
+    background: #333;
+    color: #fff;
   }
   .logo-circle {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     background: #facc15;
     border-radius: 50%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
   .title {
-    font-size: 20px;
+    font-size: 28px;
     font-weight: 600;
     margin-bottom: 30px;
     color: #111;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    text-align: center;
   }
   .card {
     border: 1px solid #e5e7eb;
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 20px;
-    width: 280px;
+    width: 300px;
+    background: #fff;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     margin: 10px 0;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   }
   .card-title {
     font-weight: 600;
@@ -73,18 +79,18 @@
 </head>
 <body>
 <div class="header">
-  <button onclick="alert('Login coming soon')">Log In</button>
-  <button onclick="alert('Sign Up coming soon')">Sign Up</button>
+  <button onclick="alert('Login feature coming soon')">Log In</button>
+  <button onclick="alert('Sign Up feature coming soon')">Sign Up</button>
 </div>
 <div class="logo-circle"></div>
-<div class="title">what’s up?</div>
-<div class="card" onclick="alert('Voice mode coming soon')">
-  <div class="card-title">voice mode</div>
-  <div class="card-subtitle">just speak, i’m all ears</div>
+<div class="title">🙂 hi Meet, how can I help you today?</div>
+<div class="card" onclick="alert('Voice mode with empathy coming soon')">
+  <div class="card-title">Voice Mode</div>
+  <div class="card-subtitle">Tap & talk, I’ll listen</div>
 </div>
-<div class="card" onclick="alert('Text mode coming soon')">
-  <div class="card-title">text mode</div>
-  <div class="card-subtitle">not in the talking mood?</div>
+<div class="card" onclick="alert('Text chat mode with mood tracking coming soon')">
+  <div class="card-title">Text Mode</div>
+  <div class="card-subtitle">Prefer to type? I’m here</div>
 </div>
 </body>
 </html>
