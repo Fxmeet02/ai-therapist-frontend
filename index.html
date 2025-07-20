@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,72 +5,61 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>AI Therapist Companion</title>
 <style>
-  body { margin: 0; height: 100vh; background: linear-gradient(to bottom right, #c8e6c9, #f0f4c3); display: flex; align-items: center; justify-content: center; transition: background 0.5s ease; }
-  .circle { width: 150px; height: 150px; background: #42a5f5; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; text-align: center; cursor: pointer; animation: pulse 2s infinite; box-shadow: 0 0 20px rgba(66, 165, 245, 0.6); }
-  @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 20px rgba(66, 165, 245, 0.6); } 50% { transform: scale(1.1); box-shadow: 0 0 30px rgba(66, 165, 245, 0.8); } 100% { transform: scale(1); box-shadow: 0 0 20px rgba(66, 165, 245, 0.6); } }
-  .language { position: absolute; top: 20px; right: 20px; padding: 8px; border-radius: 8px; border: none; }
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #b2fefa, #0ed2f7);
+    font-family: 'Helvetica Neue', sans-serif;
+    transition: background 0.5s ease;
+  }
+  .calm-container {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease;
+  }
+  h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  button {
+    background: #0ed2f7;
+    border: none;
+    color: white;
+    padding: 14px 20px;
+    font-size: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  button:hover {
+    background: #0bb3cf;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 </style>
 </head>
 <body>
-<select id="languageSelect" class="language">
-  <option value="en">English</option>
-  <option value="es">Spanish</option>
-  <option value="hi">Hindi</option>
-  <option value="fr">French</option>
-  <option value="de">German</option>
-</select>
-<div class="circle" id="circle" onclick="startListening()">🎤 Tap & Speak</div>
+<div class="calm-container">
+  <h1>How are you feeling today?</h1>
+  <button onclick="startSession()">Start Session</button>
+</div>
 <script>
-const backendURL = "https://ai-therapist-backendfinal.onrender.com/analyze_emotion";
-let recognition;
-if ('webkitSpeechRecognition' in window) {
-  recognition = new webkitSpeechRecognition();
-  recognition.lang = 'en-US';
-  recognition.interimResults = false;
-  recognition.maxAlternatives = 1;
-  recognition.onresult = function(event) {
-    const text = event.results[0][0].transcript;
-    sendText(text);
-  };
-  recognition.onerror = function() { alert("Voice recognition error."); };
-} else {
-  alert("Voice recognition not supported in this browser.");
-}
-function startListening() {
-  document.getElementById("circle").textContent = "Listening...";
-  recognition.start();
-}
-function changeBackground(emotion) {
-  const body = document.body;
-  if (emotion.includes('happy') || emotion.includes('joy')) body.style.background = '#fff9c4';
-  else if (emotion.includes('sad')) body.style.background = '#e1f5fe';
-  else if (emotion.includes('angry')) body.style.background = '#ffccbc';
-  else body.style.background = '#f0f4c3';
-}
-async function sendText(text) {
-  const selectedLang = document.getElementById("languageSelect").value;
-  document.getElementById("circle").textContent = "Talking...";
-  try {
-    const response = await fetch(backendURL, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({ text }),
-    });
-    const data = await response.json();
-    const reply = data.emotion || "I'm here for you.";
-    document.getElementById("circle").textContent = reply;
-    changeBackground(reply);
-    setTimeout(() => {
-      document.getElementById("circle").textContent = "🎤 Tap & Speak";
-    }, 4000);
-  } catch (error) {
-    document.getElementById("circle").textContent = "Error. Tap again.";
-    setTimeout(() => {
-      document.getElementById("circle").textContent = "🎤 Tap & Speak";
-    }, 3000);
-  }
+function startSession() {
+  alert('Session starting soon... Voice journaling, empathy visuals, and mood tracking coming in the next push.');
 }
 </script>
 </body>
 </html>
-```
